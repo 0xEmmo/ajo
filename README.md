@@ -2,7 +2,7 @@
 
 An offline-first ledger for ajo and esusu savings circles. Each member pays the same amount every week or month, one member collects the whole pot each round, and whoever keeps the book needs to know who has paid, who is short and whose turn it is. Usually all of that lives in an exercise book or a WhatsApp group. Ajo puts it in an installable web app that keeps working at the market with no signal, and that copes when two phones edit the same square while they're out of touch.
 
-**Live demo:** _coming soon_ (`https://ajo-<your-vercel-url>.vercel.app`)
+**Live demo:** [ajo-beige.vercel.app](https://ajo-beige.vercel.app)
 
 <p align="center"><img src="docs/demo.gif" width="320" alt="Recording Funke's payment offline on a phone, reconnecting, and settling the clash with Iya Sade's version of week 5"></p>
 
