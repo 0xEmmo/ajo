@@ -1,0 +1,48 @@
+.invite {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+}
+
+.qr {
+  width: 220px;
+  height: 220px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+}
+
+.qr svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.invite-link {
+  display: grid;
+  gap: 4px;
+}
+
+.invite-link code {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.invite-url {
+  font-size: 13px;
+  color: var(--mute);
+  word-break: break-all;
+}
+
+.invite-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.invite-actions .btn {
+  flex: 1;
+  min-height: 46px;
+}
