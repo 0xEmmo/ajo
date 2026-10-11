@@ -118,7 +118,12 @@ export function buildDemo(now: Date = new Date()): DemoSeed {
     method: 'transfer',
     paidOn: week(5),
     recordedBy: 'iya-sade',
-    recordedAt: minutesAgo(60 * 14 + 12),
+    recordedAt: (() => {
+      const d = new Date(now)
+      d.setDate(d.getDate() - 1)
+      d.setHours(19, 6, 0, 0)
+      return d.toISOString()
+    })(),
   }).doc
 
   // Kemi's phone, offline since last night.

@@ -126,7 +126,8 @@ export class Engine {
       this.channel = new BroadcastChannel('ajo')
       this.channel.onmessage = (e: MessageEvent<ChannelMessage>) => this.onMessage(e.data)
       this.set({ ready: true, docs, queue, settings })
-      if (this.online) await this.sync()
+      // Don't hold the first paint hostage to the network.
+      if (this.online) void this.sync()
     } catch (err) {
       this.set({ fatal: err instanceof Error ? err.message : String(err) })
     }

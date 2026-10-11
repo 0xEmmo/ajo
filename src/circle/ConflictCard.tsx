@@ -1,6 +1,6 @@
 import { resolveConflict, type Conflict } from '../crdt/conflicts'
 import { cellFor, roundDate } from '../domain/ledger'
-import { formatClock, formatWithDay } from '../domain/dates'
+import { formatWhen, formatWithDay } from '../domain/dates'
 import { formatNaira } from '../domain/money'
 import { firstName } from '../domain/names'
 import { useEngine, useEngineState } from '../app/engineContext'
@@ -74,7 +74,7 @@ export function ConflictCard({ conflict, onResolved, headingLevel = 3 }: Props) 
                 {stateName[state].toLowerCase()}, {methodName[v.method]}
               </span>
               <small>
-                paid {formatWithDay(v.paidOn)} · edited {formatClock(v.recordedAt)}
+                paid {formatWithDay(v.paidOn)} · edited {formatWhen(v.recordedAt)}
               </small>
             </div>
           )
