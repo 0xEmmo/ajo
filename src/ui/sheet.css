@@ -1,0 +1,141 @@
+.sheet {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+  margin: auto auto 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.sheet::backdrop {
+  background: rgba(20, 35, 29, 0.45);
+}
+
+.sheet[open] .sheet-body {
+  animation: sheet-up 220ms var(--ease);
+}
+
+.sheet[open]::backdrop {
+  animation: fade 220ms;
+}
+
+.sheet-body {
+  background: var(--paper);
+  border-radius: 18px 18px 0 0;
+  box-shadow: var(--shadow-sheet);
+  max-height: 92dvh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--safe-bottom);
+}
+
+.sheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 18px 10px;
+}
+
+.sheet-head::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 36px;
+  height: 4px;
+  margin-left: -18px;
+  border-radius: 2px;
+  background: var(--rule);
+}
+
+.sheet-title {
+  font: 800 19px var(--font-display);
+  font-stretch: 112%;
+  line-height: 1.15;
+}
+
+.sheet-desc {
+  color: var(--ink-2);
+  font-size: 13.5px;
+  margin-top: 4px;
+}
+
+.sheet-head .icon-btn {
+  margin: -6px -8px 0 0;
+}
+
+.sheet-content {
+  padding: 4px 18px 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: grid;
+  gap: 16px;
+}
+
+.sheet-foot {
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  background: var(--paper);
+}
+
+.sheet-foot .btn {
+  min-height: 46px;
+}
+
+.sheet-foot .grow {
+  flex: 1;
+}
+
+@media (min-width: 720px) {
+  .sheet {
+    margin: auto;
+    width: min(460px, calc(100vw - 48px));
+  }
+
+  .sheet-wide {
+    width: min(620px, calc(100vw - 48px));
+  }
+
+  .sheet-body {
+    border-radius: 16px;
+    max-height: min(760px, 88dvh);
+  }
+
+  .sheet[open] .sheet-body {
+    animation-name: sheet-pop;
+  }
+
+  .sheet-head::before {
+    display: none;
+  }
+
+  .sheet-foot {
+    border-radius: 0 0 16px 16px;
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes sheet-pop {
+  from {
+    transform: translateY(8px) scale(0.98);
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
