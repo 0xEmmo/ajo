@@ -30,7 +30,9 @@ export function RotationPage() {
   const move = async (index: number, delta: -1 | 1) => {
     const id = circle.order[index]!
     const name = firstName(circle.members[id]!.name)
-    await engine.edit(circle.id, { label: `Moved ${name} to ${word} ${index + 1 + delta}`, detail: 'Rotation order' }, (doc) => moveMember(doc, index, index + delta))
+    await engine.edit(circle.id, { label: `Moved ${name} to ${word} ${index + 1 + delta}`, detail: 'Rotation order' }, (doc) =>
+      moveMember(doc, index, index + delta),
+    )
     toast(`${name} now collects in ${word} ${index + 1 + delta}`)
   }
 
@@ -63,20 +65,41 @@ export function RotationPage() {
               <div className="turn-who">
                 <b>{m.name}</b>
                 <small>
-                  {formatWithDay(slot.date)} · {slot.payout ? `${stateText.collected} ${formatNaira(slot.payout.amount)}` : slot.state === 'upcoming' ? stateText.upcoming : `${formatNaira(check.collected)} of ${formatNaira(check.pot)} in`}
+                  {formatWithDay(slot.date)} ·{' '}
+                  {slot.payout
+                    ? `got ${formatNaira(slot.payout.amount)}`
+                    : slot.state === 'upcoming'
+                      ? `pot ${formatNaira(check.pot)}`
+                      : `${formatNaira(check.collected)} of ${formatNaira(check.pot)} in`}
                 </small>
               </div>
               {editing ? (
                 <span className="turn-move">
-                  <button type="button" className="icon-btn" aria-label={`Move ${m.name} earlier`} disabled={i <= lockedUpTo || i === 0} onClick={() => void move(i, -1)}>
+                  <button
+                    type="button"
+                    className="icon-btn"
+                    aria-label={`Move ${m.name} earlier`}
+                    disabled={i <= lockedUpTo || i === 0}
+                    onClick={() => void move(i, -1)}
+                  >
                     <Icon name="up" />
                   </button>
-                  <button type="button" className="icon-btn" aria-label={`Move ${m.name} later`} disabled={i < lockedUpTo || i === slots.length - 1} onClick={() => void move(i, 1)}>
+                  <button
+                    type="button"
+                    className="icon-btn"
+                    aria-label={`Move ${m.name} later`}
+                    disabled={i < lockedUpTo || i === slots.length - 1}
+                    onClick={() => void move(i, 1)}
+                  >
                     <Icon name="down" />
                   </button>
                 </span>
               ) : (
-                <button type="button" className={`btn btn-small${slot.state === 'collecting' || slot.state === 'overdue' ? ' btn-accent' : ''}`} onClick={() => openPayout(slot.round)}>
+                <button
+                  type="button"
+                  className={`btn btn-small${slot.state === 'collecting' || slot.state === 'overdue' ? ' btn-accent' : ''}`}
+                  onClick={() => openPayout(slot.round)}
+                >
                   <span className={`state-chip is-${slot.state}`}>{stateText[slot.state]}</span>
                   <span className="visually-hidden">, open {firstName(m.name)}'s turn</span>
                 </button>
