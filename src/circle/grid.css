@@ -87,23 +87,27 @@ button.cell:hover {
   box-shadow: 0 4px 10px -6px rgba(20, 35, 29, 0.6);
 }
 
-.is-paid {
+.cell.is-paid,
+.swatch.is-paid {
   background: var(--green);
   color: #e4f1ea;
 }
 
-.is-late {
+.cell.is-late,
+.swatch.is-late {
   background: var(--mustard);
   color: var(--ink);
 }
 
-.is-missed {
+.cell.is-missed,
+.swatch.is-missed {
   background: transparent;
   border: 1.5px solid var(--brick);
   color: var(--brick);
 }
 
-.is-part {
+.cell.is-part,
+.swatch.is-part {
   background: linear-gradient(90deg, var(--green) 0 50%, var(--green-tint) 50%);
   color: var(--ink);
 }
@@ -114,17 +118,19 @@ button.cell:hover {
   padding: 0 4px;
 }
 
-.is-due {
+.cell.is-due,
+.swatch.is-due {
   background: repeating-linear-gradient(135deg, var(--rule-2) 0 4px, var(--paper-2) 4px 8px);
   color: var(--mute);
 }
 
-.is-upcoming {
+.cell.is-upcoming,
+.swatch.is-upcoming {
   background: var(--paper-2);
   border: 1px dashed var(--rule);
 }
 
-.is-unsynced::after {
+.cell.is-unsynced::after {
   content: '';
   position: absolute;
   top: -4px;

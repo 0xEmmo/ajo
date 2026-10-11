@@ -131,11 +131,11 @@ export function buildDemo(now: Date = new Date()): DemoSeed {
   }
   const t1 = minutesAgo(40)
   push('Ngozi paid ₦20,000 for week 7', 'Transfer ref 0291', t1, cellKey('ngozi', 7), (d) =>
-    recordPayment(d, 'ngozi', 7, { amount, method: 'transfer', ref: '0291', paidOn: todayISO, recordedBy: 'kemi', recordedAt: t1 }),
+    recordPayment(d, 'ngozi', 7, { amount, method: 'transfer', ref: '0291', paidOn: week(7), recordedBy: 'kemi', recordedAt: t1 }),
   )
   const t2 = minutesAgo(34)
   push('Mama Bisi paid ₦20,000 for week 7', 'Cash at the stall', t2, cellKey('mama-bisi', 7), (d) =>
-    recordPayment(d, 'mama-bisi', 7, { amount, method: 'cash', note: 'At the stall', paidOn: todayISO, recordedBy: 'kemi', recordedAt: t2 }),
+    recordPayment(d, 'mama-bisi', 7, { amount, method: 'cash', note: 'At the stall', paidOn: week(7), recordedBy: 'kemi', recordedAt: t2 }),
   )
   const t3 = minutesAgo(23)
   push('Funke week 5 set to ₦10,000', 'Part paid, cash', t3, cellKey('funke', 5), (d) =>

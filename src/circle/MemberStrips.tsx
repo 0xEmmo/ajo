@@ -35,7 +35,7 @@ export function MemberStrips() {
         {rows.map(({ id, s }) => {
           const m = circle.members[id]!
           const unsyncedHere = rounds.some((r) => pending.has(cellKey(id, r)))
-          const status = unsyncedHere ? `Changed on this phone · not synced` : describeMember(s, formatNaira, abbr)
+          const status = s.owed === 0 && unsyncedHere ? 'Edited here · not synced' : describeMember(s, formatNaira, abbr)
           return (
             <li key={id}>
               <Link to={`members/${id}`} className="strip-row">
