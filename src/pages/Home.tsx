@@ -64,19 +64,40 @@ export function Home() {
             </div>
           </section>
         ) : (
-          <ul className="circle-cards">
-            {circles.map(({ circle, conflicts }) => (
-              <li key={circle.id}>
-                <CircleCard
-                  circle={circle}
-                  conflicts={conflicts}
-                  pending={queue.filter((q) => q.circleId === circle.id).length}
-                  meId={settings.me[circle.id]}
-                  today={today}
-                />
-              </li>
-            ))}
-          </ul>
+          <div className="home-grid">
+            <ul className="circle-cards">
+              {circles.map(({ circle, conflicts }) => (
+                <li key={circle.id}>
+                  <CircleCard
+                    circle={circle}
+                    conflicts={conflicts}
+                    pending={queue.filter((q) => q.circleId === circle.id).length}
+                    meId={settings.me[circle.id]}
+                    today={today}
+                  />
+                </li>
+              ))}
+            </ul>
+            <aside className="home-aside" aria-labelledby="about-title">
+              <img src="/photos/market-stall.jpg" alt="Two traders laughing together at their market stall" width="340" height="150" loading="lazy" />
+              <div>
+                <h2 id="about-title" className="eyebrow">
+                  How Ajo keeps the book
+                </h2>
+                <ul>
+                  <li>
+                    <b>Works with no signal.</b> Everything is saved on this phone first.
+                  </li>
+                  <li>
+                    <b>Every phone has the whole book.</b> Changes travel when anyone has signal.
+                  </li>
+                  <li>
+                    <b>Nothing is quietly overwritten.</b> If two phones disagree about a square, you see both and choose.
+                  </li>
+                </ul>
+              </div>
+            </aside>
+          </div>
         )}
       </main>
 
