@@ -261,3 +261,38 @@ button.cell:hover {
 .strip-chev {
   color: var(--mute);
 }
+
+/* Payment form */
+.pay-form {
+  display: grid;
+  gap: 16px;
+}
+
+.pay-target {
+  font-size: 15px;
+}
+
+.pay-pickers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pay-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pay-actions .btn {
+  min-height: 48px;
+}
+
+.pay-actions .grow {
+  flex: 1;
+}
+
+.pay-foot {
+  font-size: 12.5px;
+  text-align: center;
+  margin-top: -6px;
+}
