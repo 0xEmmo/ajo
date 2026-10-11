@@ -256,8 +256,9 @@ export class Engine {
 
   async updateSettings(patch: Partial<DeviceSettings>) {
     const settings = { ...this.state.settings, ...patch }
-    await writeSettings(this.device!, settings)
+    // Update the UI first so switches respond instantly; storage catches up.
     this.set({ settings })
+    await writeSettings(this.device!, settings)
   }
 
   async setSignal(signal: boolean) {
