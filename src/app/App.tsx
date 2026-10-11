@@ -15,6 +15,7 @@ import { ToastProvider } from '../ui/Toast'
 import { useToast } from '../ui/toastContext'
 import { useEngine } from './engineContext'
 import { StatusBar } from './StatusBar'
+import { UpdatePrompt } from './UpdatePrompt'
 
 function Root() {
   return (
@@ -24,6 +25,7 @@ function Root() {
       </a>
       <StatusBar />
       <EngineEvents />
+      <UpdatePrompt />
       <Outlet />
       <ScrollRestoration />
     </ToastProvider>
