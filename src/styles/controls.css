@@ -51,6 +51,16 @@
   background: var(--brick-soft);
 }
 
+.btn-destructive {
+  background: var(--brick);
+  border-color: var(--brick);
+  color: #fff;
+}
+
+.btn-destructive:hover:not(:disabled) {
+  background: #9a2f21;
+}
+
 .btn-ghost {
   border-color: transparent;
 }
