@@ -1,18 +1,6 @@
-import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react'
+import { ToastContext, type Push, type ToastItem } from './toastContext'
 import './toast.css'
-
-interface ToastItem {
-  id: number
-  message: string
-  action?: { label: string; run: () => void }
-  tone?: 'default' | 'warn'
-}
-
-type Push = (message: string, opts?: { action?: ToastItem['action']; tone?: ToastItem['tone']; ms?: number }) => void
-
-const ToastContext = createContext<Push>(() => {})
-
-export const useToast = () => useContext(ToastContext)
 
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<ToastItem[]>([])
