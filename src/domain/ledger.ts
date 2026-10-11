@@ -17,7 +17,7 @@ export function roundCount(circle: Circle): number {
   return circle.order.length
 }
 
-export function roundDate(circle: Circle, round: number): ISODate {
+export function roundDate(circle: Pick<Circle, 'startDate' | 'frequency'>, round: number): ISODate {
   return circle.frequency === 'weekly'
     ? addDays(circle.startDate, (round - 1) * 7)
     : addMonths(circle.startDate, round - 1)
