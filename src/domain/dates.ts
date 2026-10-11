@@ -50,15 +50,22 @@ export function previousWeekday(iso: ISODate, weekday: number): ISODate {
   return addDays(iso, -diff)
 }
 
-const short = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short' })
-const withDay = new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })
+// Fixed three-letter months: browsers disagree on "Sep" vs "Sept" for en-GB.
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const long = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })
 const clock = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false })
 
 /** "10 Oct" */
-export const formatShort = (iso: ISODate) => short.format(fromISODate(iso))
+export function formatShort(iso: ISODate): string {
+  const d = fromISODate(iso)
+  return `${d.getDate()} ${MONTHS[d.getMonth()]}`
+}
+
 /** "Sat 10 Oct" */
-export const formatWithDay = (iso: ISODate) => withDay.format(fromISODate(iso)).replace(',', '')
+export function formatWithDay(iso: ISODate): string {
+  return `${DAYS[fromISODate(iso).getDay()]} ${formatShort(iso)}`
+}
 /** "Saturday 10 October" */
 export const formatLong = (iso: ISODate) => long.format(fromISODate(iso)).replace(',', '')
 /** "08:14" from a full timestamp */
@@ -71,7 +78,7 @@ export function formatWhen(timestamp: string, now: Date = new Date()): string {
   if (sameDay) return formatClock(timestamp)
   const age = daysBetween(toISODate(t), toISODate(now))
   if (age > 0 && age < 7) {
-    return `${new Intl.DateTimeFormat('en-GB', { weekday: 'short' }).format(t)} ${formatClock(timestamp)}`
+    return `${DAYS[t.getDay()]} ${formatClock(timestamp)}`
   }
   return `${formatShort(toISODate(t))} ${formatClock(timestamp)}`
 }

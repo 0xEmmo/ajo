@@ -43,7 +43,7 @@ describe('formatting', () => {
     const now = new Date(2026, 9, 11, 9, 0)
     expect(formatWhen(new Date(2026, 9, 11, 8, 14).toISOString(), now)).toBe('08:14')
     expect(formatWhen(new Date(2026, 9, 10, 17, 42).toISOString(), now)).toBe('Sat 17:42')
-    expect(formatWhen(new Date(2026, 8, 20, 17, 42).toISOString(), now)).toMatch(/^20 Sept? 17:42$/)
+    expect(formatWhen(new Date(2026, 8, 20, 17, 42).toISOString(), now)).toBe('20 Sep 17:42')
   })
 
   it('pluralises', () => {
