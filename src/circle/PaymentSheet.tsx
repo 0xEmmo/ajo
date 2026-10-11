@@ -113,7 +113,7 @@ function PaymentForm({ target, onDone }: { target: NonNullable<Props['target']>;
           </span>
         </p>
       ) : (
-        <div className="pay-pickers">
+        <div className="field-pair">
           <label className="field" htmlFor={ids.member}>
             <span>Member</span>
             <select id={ids.member} className="input" value={memberId} onChange={(e) => setMemberId(e.target.value)}>
@@ -179,7 +179,7 @@ function PaymentForm({ target, onDone }: { target: NonNullable<Props['target']>;
         </div>
       </fieldset>
 
-      <div className="pay-pickers">
+      <div className="field-pair">
         <label className="field" htmlFor={ids.date}>
           <span>Paid on</span>
           <input id={ids.date} type="date" className="input" value={paidOn} max={today} onChange={(e) => setPaidOn(e.target.value)} aria-invalid={!!dateError} />

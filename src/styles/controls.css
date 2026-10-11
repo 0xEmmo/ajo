@@ -287,3 +287,15 @@ fieldset.field {
     transform: rotate(360deg);
   }
 }
+
+.field-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 359px) {
+  .field-pair {
+    grid-template-columns: 1fr;
+  }
+}

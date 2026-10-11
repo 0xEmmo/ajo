@@ -278,12 +278,6 @@ button.cell:hover {
   font-size: 15px;
 }
 
-.pay-pickers {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
 .pay-actions {
   display: flex;
   gap: 8px;

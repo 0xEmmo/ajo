@@ -136,7 +136,7 @@ function PayoutBody({ round, onDone }: { round: number; onDone: () => void }) {
         </p>
       ) : (
         <form onSubmit={submit} className="payout-form" noValidate>
-          <div className="pay-pickers">
+          <div className="field-pair">
             <label className="field" htmlFor={ids.amount}>
               <span>Amount paid out</span>
               <input id={ids.amount} className="input money" inputMode="decimal" value={amountText} onChange={(e) => (setAmountText(e.target.value), setConfirmShort(false))} aria-invalid={amount === null} />
