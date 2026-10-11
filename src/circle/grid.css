@@ -8,7 +8,7 @@
   border-collapse: separate;
   border-spacing: 6px 5px;
   width: 100%;
-  min-width: calc(190px + 110px + var(--cols) * 64px);
+  min-width: calc(190px + 110px + var(--cols) * 80px);
 }
 
 .contrib-table thead th {
@@ -37,6 +37,15 @@
 .contrib-table td.tot {
   width: 110px;
   text-align: right;
+}
+
+.contrib-table tbody th,
+.contrib-table thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--paper);
+  box-shadow: -6px 0 0 var(--paper);
 }
 
 .contrib-table tbody th {
@@ -115,6 +124,7 @@ button.cell:hover {
 }
 
 .part-chip {
+  white-space: nowrap;
   background: #fff;
   border-radius: 3px;
   padding: 0 4px;
