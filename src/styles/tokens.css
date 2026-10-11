@@ -1,0 +1,36 @@
+:root {
+  /* Indigo-free on purpose: market ledger green, receipt paper, mustard for "pending". */
+  --paper: #faf8f2;
+  --paper-2: #f4f1e8;
+  --card: #ffffff;
+  --ink: #14231d;
+  --ink-2: #3a4540;
+  --mute: #68716b;
+  --rule: #dcd8cc;
+  --rule-2: #ebe7db;
+  --green: #0f4a36;
+  --green-2: #2c7a5a;
+  --green-soft: #dcebe2;
+  --green-tint: #bcdccc;
+  --mustard: #e3a21a;
+  --mustard-soft: #fbefcf;
+  --brick: #b23a2a;
+  --brick-soft: #f6dcd6;
+  --brick-line: #e5b5ac;
+  --on-ink: #f3efe2;
+  --on-ink-mute: #b9c2bc;
+
+  --font-display: 'Archivo Variable', 'Archivo', 'Arial Narrow', sans-serif;
+  --font-body: 'Public Sans Variable', 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'Spline Sans Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --radius: 12px;
+  --radius-sm: 7px;
+  --focus: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
+  --shadow-sheet: 0 -12px 40px -16px rgba(20, 35, 29, 0.35);
+  --shadow-fab: 0 6px 16px -6px rgba(20, 35, 29, 0.5);
+
+  --tabbar-h: 64px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}

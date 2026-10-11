@@ -1,0 +1,279 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 120ms, color 120ms, transform 120ms var(--ease);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--paper-2);
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #23392f;
+}
+
+.btn-accent {
+  background: var(--mustard);
+  border-color: var(--mustard);
+  color: var(--ink);
+}
+
+.btn-accent:hover:not(:disabled) {
+  background: #d4950f;
+}
+
+.btn-danger {
+  border-color: var(--brick);
+  color: var(--brick);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--brick-soft);
+}
+
+.btn-ghost {
+  border-color: transparent;
+}
+
+.btn-small {
+  min-height: 32px;
+  padding: 5px 10px;
+  font-size: 13px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
+
+.btn-on-ink {
+  border-color: var(--on-ink-mute);
+  color: var(--on-ink);
+}
+
+.btn-on-ink:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--ink);
+}
+
+.icon-btn:hover {
+  background: var(--paper-2);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field > span:first-child,
+.field legend {
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.field small {
+  color: var(--mute);
+  font-size: 12.5px;
+}
+
+.field .error {
+  color: var(--brick);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  font-size: 16px;
+}
+
+.input:focus-visible {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px var(--mustard-soft);
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--brick);
+}
+
+.input.money {
+  font-family: var(--font-mono);
+}
+
+fieldset.field {
+  border: 0;
+}
+
+.segmented {
+  display: flex;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.segmented label {
+  flex: 1;
+  position: relative;
+}
+
+.segmented input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+}
+
+.segmented span {
+  display: grid;
+  place-items: center;
+  min-height: 40px;
+  padding: 6px 10px;
+  font-weight: 600;
+  font-size: 14px;
+  border-left: 1px solid var(--ink);
+  cursor: pointer;
+}
+
+.segmented label:first-child span {
+  border-left: 0;
+}
+
+.segmented input:checked + span {
+  background: var(--ink);
+  color: #fff;
+}
+
+.segmented input:focus-visible + span {
+  box-shadow: inset 0 0 0 3px var(--mustard);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 13.5px;
+  background: var(--card);
+  min-height: 36px;
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--green);
+  border-color: var(--green);
+  color: #e4f1ea;
+}
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 44px;
+  height: 26px;
+}
+
+.switch .track {
+  width: 44px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--rule);
+  position: relative;
+  transition: background-color 150ms;
+  flex: none;
+}
+
+.switch .track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 150ms var(--ease);
+}
+
+.switch input:checked + .track {
+  background: var(--green);
+}
+
+.switch input:checked + .track::after {
+  transform: translateX(18px);
+}
+
+.switch input:focus-visible + .track {
+  box-shadow: var(--focus);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+  flex: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
