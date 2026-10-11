@@ -17,8 +17,8 @@ export function StatusBar() {
         <Icon name="offline" size={18} className="sb-icon" />
         <p className="sb-main">
           <b>You're offline.</b> <span className="sb-hide-sm">Everything still works.</span>
+          {waiting > 0 && <span className="sb-pill num">{plural(waiting, 'change')} waiting to sync</span>}
         </p>
-        {waiting > 0 && <span className="sb-pill num">{plural(waiting, 'change')} waiting to sync</span>}
         <p className="sb-meta">
           {last} · Saved on this phone
         </p>

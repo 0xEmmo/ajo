@@ -18,6 +18,14 @@
   flex: none;
 }
 
+.sb-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-width: 0;
+}
+
 .sb-pill {
   background: var(--mustard);
   color: var(--ink);
@@ -57,10 +65,24 @@
     padding-right: 12px;
   }
 
+  .statusbar {
+    flex-wrap: nowrap;
+  }
+
+  .is-offline {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+  }
+
   .is-offline .sb-meta {
-    order: 5;
-    width: 100%;
+    grid-column: 1 / -1;
+    grid-row: 2;
     font-size: 11.5px;
+  }
+
+  .sb-action {
+    grid-column: 3;
+    grid-row: 1;
   }
 
   .is-online .sb-meta {
