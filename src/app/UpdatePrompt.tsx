@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 import './update.css'
 
@@ -8,6 +9,12 @@ export function UpdatePrompt() {
     offlineReady: [offlineReady, setOfflineReady],
     updateServiceWorker,
   } = useRegisterSW()
+
+  useEffect(() => {
+    if (!offlineReady) return
+    const t = setTimeout(() => setOfflineReady(false), 6000)
+    return () => clearTimeout(t)
+  }, [offlineReady, setOfflineReady])
 
   if (!needRefresh && !offlineReady) return null
 
