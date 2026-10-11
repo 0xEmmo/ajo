@@ -83,76 +83,84 @@ export function MemberPage() {
         </div>
       </header>
 
-      <dl className="stats">
-        <div>
-          <dt>Paid</dt>
-          <dd>{formatNaira(s.paid)}</dd>
-        </div>
-        <div>
-          <dt>{s.credit > 0 ? 'Ahead' : 'Owes'}</dt>
-          <dd className={s.owed > 0 ? 'owing' : undefined}>{formatNaira(s.credit > 0 ? s.credit : s.owed)}</dd>
-        </div>
-        <div>
-          <dt>Collects</dt>
-          <dd>
-            {slot ? `${capital(roundAbbr(circle))} ${slot.round}` : '–'}
-            {slot && <small>{slot.payout ? `got ${formatNaira(slot.payout.amount)}` : formatWithDay(slot.date)}</small>}
-          </dd>
-        </div>
-      </dl>
+      <div className="member-columns">
+        <div className="stack">
+          <dl className="stats">
+            <div>
+              <dt>Paid</dt>
+              <dd>{formatNaira(s.paid)}</dd>
+            </div>
+            <div>
+              <dt>{s.credit > 0 ? 'Ahead' : 'Owes'}</dt>
+              <dd className={s.owed > 0 ? 'owing' : undefined}>{formatNaira(s.credit > 0 ? s.credit : s.owed)}</dd>
+            </div>
+            <div>
+              <dt>Collects</dt>
+              <dd>
+                {slot ? `${capital(roundAbbr(circle))} ${slot.round}` : '–'}
+                {slot && <small>{slot.payout ? `got ${formatNaira(slot.payout.amount)}` : formatWithDay(slot.date)}</small>}
+              </dd>
+            </div>
+          </dl>
 
-      <div className="row">
-        <button type="button" className="btn btn-accent" onClick={() => openPayment({ memberId, round: undefined })}>
-          <Icon name="plus" size={16} strokeWidth={2.6} /> Record payment
-        </button>
-        {s.owed > 0 && (
-          <button type="button" className="btn" onClick={() => void remind()}>
-            <Icon name="message" size={16} /> Send a reminder
-          </button>
-        )}
-        <button type="button" className="btn" onClick={() => setEditing(true)}>
-          <Icon name="edit" size={16} /> Edit details
-        </button>
-      </div>
+          <div className="row">
+            <button type="button" className="btn btn-accent" onClick={() => openPayment({ memberId, round: undefined })}>
+              <Icon name="plus" size={16} strokeWidth={2.6} /> Record payment
+            </button>
+            {s.owed > 0 && (
+              <button type="button" className="btn" onClick={() => void remind()}>
+                <Icon name="message" size={16} /> Send a reminder
+              </button>
+            )}
+            <button type="button" className="btn" onClick={() => setEditing(true)}>
+              <Icon name="edit" size={16} /> Edit details
+            </button>
+          </div>
 
-      <section aria-labelledby="hist-title">
-        <h2 id="hist-title" className="eyebrow">
-          {word === 'week' ? 'Week by week' : 'Month by month'}
-        </h2>
-        <ul className="history">
-          {rounds.map((r) => {
-            const cell = cellFor(circle, memberId, r, today)
-            const key = cellKey(memberId, r)
-            const conflict = conflictKeys.has(key)
-            return (
-              <li key={r}>
-                <button type="button" onClick={() => (conflict ? openConflict(key) : openPayment({ memberId, round: r }))}>
-                  <span className={`cell is-${cell.state}${conflict ? ' has-conflict' : ''}${pending.has(key) ? ' is-unsynced' : ''}`} aria-hidden="true">
-                    {cell.state === 'part' ? '½' : cell.state === 'upcoming' ? '' : cellText(cell, circle.amount).replace(/ days?$/, 'd')}
-                  </span>
-                  <span>
-                    <b>
-                      {capital(word)} {r} · {formatWithDay(roundDate(circle, r))}
-                    </b>
-                    <small>
-                      {conflict ? 'Two versions to check' : stateName[cell.state]}
-                      {cell.payment && ` · ${methodName[cell.payment.method]}${cell.payment.ref ? ` ref ${cell.payment.ref}` : ''}`}
-                      {pending.has(key) && ' · not synced'}
-                    </small>
-                  </span>
-                  <span className="num">{cell.payment ? formatNaira(cell.payment.amount) : ''}</span>
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      </section>
+          <div className="danger-zone">
+            <button type="button" className="btn btn-danger" disabled={!canRemove} onClick={() => void remove()} aria-describedby="remove-why">
+              <Icon name="trash" size={16} /> Remove from circle
+            </button>
+            <p id="remove-why">
+              {canRemove
+                ? 'They have not paid anything yet, so nothing is lost.'
+                : `${name} has payments recorded, so they stay on the books. Record a payout to settle up instead.`}
+            </p>
+          </div>
+        </div>
 
-      <div className="danger-zone">
-        <button type="button" className="btn btn-danger" disabled={!canRemove} onClick={() => void remove()} aria-describedby="remove-why">
-          <Icon name="trash" size={16} /> Remove from circle
-        </button>
-        <p id="remove-why">{canRemove ? 'They have not paid anything yet, so nothing is lost.' : `${name} has payments recorded, so they stay on the books. Record a payout to settle up instead.`}</p>
+        <section aria-labelledby="hist-title">
+          <h2 id="hist-title" className="eyebrow">
+            {word === 'week' ? 'Week by week' : 'Month by month'}
+          </h2>
+          <ul className="history">
+            {rounds.map((r) => {
+              const cell = cellFor(circle, memberId, r, today)
+              const key = cellKey(memberId, r)
+              const conflict = conflictKeys.has(key)
+              return (
+                <li key={r}>
+                  <button type="button" onClick={() => (conflict ? openConflict(key) : openPayment({ memberId, round: r }))}>
+                    <span className={`cell is-${cell.state}${conflict ? ' has-conflict' : ''}${pending.has(key) ? ' is-unsynced' : ''}`} aria-hidden="true">
+                      {cell.state === 'part' ? '½' : cell.state === 'upcoming' ? '' : cellText(cell, circle.amount).replace(/ days?$/, 'd')}
+                    </span>
+                    <span>
+                      <b>
+                        {capital(word)} {r} · {formatWithDay(roundDate(circle, r))}
+                      </b>
+                      <small>
+                        {conflict ? 'Two versions to check' : stateName[cell.state]}
+                        {cell.payment && ` · ${methodName[cell.payment.method]}${cell.payment.ref ? ` ref ${cell.payment.ref}` : ''}`}
+                        {pending.has(key) && ' · not synced'}
+                      </small>
+                    </span>
+                    <span className="num">{cell.payment ? formatNaira(cell.payment.amount) : ''}</span>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
       </div>
 
       <Sheet open={editing} onClose={() => setEditing(false)} title={`Edit ${name}`}>
