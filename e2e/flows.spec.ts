@@ -68,6 +68,12 @@ test('explains a code that does not exist', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'No circle with that code' })).toBeVisible()
 })
 
+test('members list is readable and accessible', async ({ page }) => {
+  await openLedger(page, `${DEMO}/members`)
+  await expect(page.getByRole('link', { name: /Blessing Udo.*Owes ₦40,000/ })).toBeVisible()
+  await expectAccessible(page)
+})
+
 test('member page shows history and blocks removing someone who has paid', async ({ page }) => {
   await openLedger(page, `${DEMO}/members/blessing`)
   await expect(page.getByRole('heading', { level: 1, name: 'Blessing Udo' })).toBeVisible()
