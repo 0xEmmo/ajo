@@ -27,6 +27,13 @@
 }
 
 /* Phone */
+.phone-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -6px 0 10px;
+}
+
 .phone-ledger h1 {
   font-size: 23px;
 }

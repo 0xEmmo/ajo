@@ -45,7 +45,8 @@ function WideLedger() {
           <div>
             <h1 className="display">{circle.name}</h1>
             <p className="ledger-meta">
-              {formatNaira(circle.amount)} {every} · {plural(circle.order.length, 'member')} · {s.round === 0 ? 'starts' : 'started'} {formatShort(circle.startDate)}
+              {formatNaira(circle.amount)} {every} · {plural(circle.order.length, 'member')} · {s.round === 0 ? 'starts' : 'started'}{' '}
+              {formatShort(circle.startDate)}
               {coordinator && ` · coordinator ${coordinator.name}`}
             </p>
           </div>
@@ -96,7 +97,11 @@ function CollectCard() {
         </h3>
         <p>
           {formatNaira(check.collected)} of {formatNaira(check.pot)} is in for {word} {slot.round}.{' '}
-          {missing.length === 0 ? 'Everyone has paid.' : missing.length <= 2 ? `${missing.join(' and ')} ${missing.length === 1 ? 'is' : 'are'} outstanding.` : `${plural(missing.length, 'member')} still to pay.`}
+          {missing.length === 0
+            ? 'Everyone has paid.'
+            : missing.length <= 2
+              ? `${missing.join(' and ')} ${missing.length === 1 ? 'is' : 'are'} outstanding.`
+              : `${plural(missing.length, 'member')} still to pay.`}
         </p>
         <button type="button" className="btn btn-primary btn-small" onClick={() => openPayout(slot.round)}>
           <Icon name="payout" size={16} /> {slot.state === 'upcoming' ? 'See the pot' : `Pay out to ${name}`}
@@ -107,16 +112,25 @@ function CollectCard() {
 }
 
 function PhoneLedger() {
-  const { circle, conflicts, today, openPayout, openConflict } = useCircleView()
+  const { circle, conflicts, today, openPayout, openConflict, openInvite } = useCircleView()
   const { s } = useHeader()
   const [later, setLater] = useState<string[]>([])
   const word = roundWord(circle)
   const slot = focusSlot(circle, today)
   const collector = slot && circle.members[slot.memberId]
   const visible = conflicts.filter((c) => !later.includes(c.key))
+  const collected = slot ? payoutCheck(circle, slot.round)!.collected : 0
 
   return (
     <div className="phone-ledger">
+      <div className="phone-top">
+        <Link to="/" className="back">
+          <Icon name="back" size={18} /> Circles
+        </Link>
+        <button type="button" className="btn btn-small" onClick={openInvite}>
+          <Icon name="qr" size={16} /> Invite
+        </button>
+      </div>
       <DemoTip />
       <header>
         <h1 className="display">{circle.name}</h1>
@@ -131,13 +145,16 @@ function PhoneLedger() {
         <button type="button" className="turn" onClick={() => openPayout(slot.round)}>
           <Avatar member={collector} size={52} />
           <span className="turn-body">
-            <small>{slot.state === 'collecting' ? `Collecting this ${word}` : slot.state === 'overdue' ? 'Not paid out yet' : `Collects ${formatWithDay(slot.date)}`}</small>
+            <small>
+              {slot.state === 'collecting' ? `Collecting this ${word}` : slot.state === 'overdue' ? 'Not paid out yet' : `Collects ${formatWithDay(slot.date)}`}
+            </small>
             <b>{collector.name}</b>
             <span className="turn-bar" aria-hidden="true">
-              <i style={{ width: `${Math.min(100, (s.round === slot.round ? s.collectedThisRound : payoutCheck(circle, slot.round)!.collected) / Math.max(1, s.pot)) * 100}%` }} />
+              <i style={{ width: `${Math.min(100, (collected / Math.max(1, s.pot)) * 100)}%` }} />
             </span>
             <span className="turn-n num">
-              {formatNaira(payoutCheck(circle, slot.round)!.collected)} of {formatNaira(s.pot)} · {s.round === slot.round ? `${s.paidThisRound} of ${circle.order.length} paid` : `${word} ${slot.round}`}
+              {formatNaira(collected)} of {formatNaira(s.pot)} ·{' '}
+              {s.round === slot.round ? `${s.paidThisRound} of ${circle.order.length} paid` : `${word} ${slot.round}`}
             </span>
           </span>
         </button>
@@ -190,8 +207,8 @@ function DemoTip() {
   return (
     <aside className="demo-tip" aria-label="About this demo">
       <p>
-        <b>This is Kemi's phone, and it starts offline.</b> Record a payment, then press Reconnect: the queue drains and Iya Sade's version of Funke's week 5 turns up as a clash to settle.{' '}
-        <Link to="sync">Open a second phone</Link> to watch edits travel between tabs.
+        <b>This is Kemi's phone, and it starts offline.</b> Record a payment, then press Reconnect: the queue drains and Iya Sade's version of Funke's week 5
+        turns up as a clash to settle. <Link to="sync">Open a second phone</Link> to watch edits travel between tabs.
       </p>
       <button type="button" className="icon-btn" aria-label="Dismiss tip" onClick={() => void engine.updateSettings({ tipDismissed: true })}>
         <Icon name="close" size={18} />
