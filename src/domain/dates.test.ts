@@ -1,13 +1,4 @@
-import {
-  addDays,
-  addMonths,
-  daysBetween,
-  formatShort,
-  formatWhen,
-  formatWithDay,
-  plural,
-  previousWeekday,
-} from './dates'
+import { addDays, addMonths, daysBetween, formatShort, formatWhen, formatWithDay, plural, previousWeekday } from './dates'
 
 describe('day arithmetic', () => {
   it('adds days across month ends', () => {

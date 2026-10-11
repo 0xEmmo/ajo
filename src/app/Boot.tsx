@@ -9,7 +9,8 @@ export function Boot({ error }: { error?: string }) {
         <Mark size={40} />
         <h1 className="display">Ajo can't open its storage</h1>
         <p>
-          This browser isn't letting Ajo save anything on the device, so it can't keep your ledger. Private browsing modes often do this. Try a normal window, or another browser.
+          This browser isn't letting Ajo save anything on the device, so it can't keep your ledger. Private browsing modes often do this. Try a normal window,
+          or another browser.
         </p>
         <pre className="num">{error}</pre>
         <button type="button" className="btn btn-primary" onClick={() => location.reload()}>

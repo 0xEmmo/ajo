@@ -31,10 +31,7 @@ export interface EngineState {
   syncError?: string
 }
 
-export type EngineEvent =
-  | { type: 'conflicts-arrived'; circleId: string; conflicts: Conflict[] }
-  | { type: 'synced'; count: number }
-  | { type: 'reset' }
+export type EngineEvent = { type: 'conflicts-arrived'; circleId: string; conflicts: Conflict[] } | { type: 'synced'; count: number } | { type: 'reset' }
 
 export interface EngineOptions {
   deviceId: string
@@ -48,9 +45,7 @@ export interface EngineOptions {
 type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never
 
 type ChannelMessage =
-  | { type: 'relay-updated'; circleId: string; from: string }
-  | { type: 'device-saved'; circleId: string; from: string }
-  | { type: 'reset'; from: string }
+  { type: 'relay-updated'; circleId: string; from: string } | { type: 'device-saved'; circleId: string; from: string } | { type: 'reset'; from: string }
 
 /**
  * Owns one phone's copy of every circle. There's no server: the "relay" is a

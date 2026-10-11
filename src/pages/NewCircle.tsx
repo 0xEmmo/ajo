@@ -123,14 +123,33 @@ export function NewCircle() {
         >
           <label className="field" htmlFor={ids.name}>
             <span>Circle name</span>
-            <input id={ids.name} className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Balogun Street Traders" aria-invalid={!!(tried[0] && errors0.name)} />
+            <input
+              id={ids.name}
+              className="input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. Balogun Street Traders"
+              aria-invalid={!!(tried[0] && errors0.name)}
+            />
             {tried[0] && errors0.name && <small className="error">{errors0.name}</small>}
           </label>
           <div className="field-pair">
             <label className="field" htmlFor={ids.amount}>
               <span>Each person pays</span>
-              <input id={ids.amount} className="input money" inputMode="decimal" value={amountText} onChange={(e) => setAmountText(e.target.value)} placeholder="₦20,000" aria-invalid={!!(tried[0] && errors0.amount)} />
-              {tried[0] && errors0.amount ? <small className="error">{errors0.amount}</small> : amount !== null && <small>{formatNaira(amount)} each time</small>}
+              <input
+                id={ids.amount}
+                className="input money"
+                inputMode="decimal"
+                value={amountText}
+                onChange={(e) => setAmountText(e.target.value)}
+                placeholder="₦20,000"
+                aria-invalid={!!(tried[0] && errors0.amount)}
+              />
+              {tried[0] && errors0.amount ? (
+                <small className="error">{errors0.amount}</small>
+              ) : (
+                amount !== null && <small>{formatNaira(amount)} each time</small>
+              )}
             </label>
             <fieldset className="field">
               <legend>How often</legend>
@@ -146,12 +165,32 @@ export function NewCircle() {
           </div>
           <label className="field" htmlFor={ids.start}>
             <span>First contribution day</span>
-            <input id={ids.start} type="date" className="input" value={start} onChange={(e) => setStart(e.target.value)} aria-invalid={!!(tried[0] && errors0.start)} />
-            {tried[0] && errors0.start ? <small className="error">{errors0.start}</small> : <small>{formatWithDay(start)}. Everyone pays on this day each {frequency === 'weekly' ? 'week' : 'month'}.</small>}
+            <input
+              id={ids.start}
+              type="date"
+              className="input"
+              value={start}
+              onChange={(e) => setStart(e.target.value)}
+              aria-invalid={!!(tried[0] && errors0.start)}
+            />
+            {tried[0] && errors0.start ? (
+              <small className="error">{errors0.start}</small>
+            ) : (
+              <small>
+                {formatWithDay(start)}. Everyone pays on this day each {frequency === 'weekly' ? 'week' : 'month'}.
+              </small>
+            )}
           </label>
           <label className="field" htmlFor={ids.you}>
             <span>Your name</span>
-            <input id={ids.you} className="input" value={you} onChange={(e) => setYou(e.target.value)} autoComplete="name" aria-invalid={!!(tried[0] && errors0.you)} />
+            <input
+              id={ids.you}
+              className="input"
+              value={you}
+              onChange={(e) => setYou(e.target.value)}
+              autoComplete="name"
+              aria-invalid={!!(tried[0] && errors0.you)}
+            />
             {tried[0] && errors0.you ? <small className="error">{errors0.you}</small> : <small>You'll be the coordinator. You can add photos later.</small>}
           </label>
           <div className="wizard-nav">
@@ -182,7 +221,12 @@ export function NewCircle() {
                   {p.id === 'you' && <span className="tag you">You</span>}
                 </span>
                 {p.id !== 'you' && (
-                  <button type="button" className="icon-btn" aria-label={`Remove ${p.name}`} onClick={() => setPeople((all) => all.filter((x) => x.id !== p.id))}>
+                  <button
+                    type="button"
+                    className="icon-btn"
+                    aria-label={`Remove ${p.name}`}
+                    onClick={() => setPeople((all) => all.filter((x) => x.id !== p.id))}
+                  >
                     <Icon name="close" size={18} />
                   </button>
                 )}
@@ -228,10 +272,22 @@ export function NewCircle() {
                     <small className="muted"> {formatWithDay(roundDate({ startDate: start, frequency }, i + 1))}</small>
                   </span>
                   <span className="turn-move">
-                    <button type="button" className="icon-btn" aria-label={`Move ${p.name} earlier`} disabled={i === 0} onClick={() => setOrder((o) => moveInOrder(o, i, -1) ?? o)}>
+                    <button
+                      type="button"
+                      className="icon-btn"
+                      aria-label={`Move ${p.name} earlier`}
+                      disabled={i === 0}
+                      onClick={() => setOrder((o) => moveInOrder(o, i, -1) ?? o)}
+                    >
                       <Icon name="up" />
                     </button>
-                    <button type="button" className="icon-btn" aria-label={`Move ${p.name} later`} disabled={i === order.length - 1} onClick={() => setOrder((o) => moveInOrder(o, i, 1) ?? o)}>
+                    <button
+                      type="button"
+                      className="icon-btn"
+                      aria-label={`Move ${p.name} later`}
+                      disabled={i === order.length - 1}
+                      onClick={() => setOrder((o) => moveInOrder(o, i, 1) ?? o)}
+                    >
                       <Icon name="down" />
                     </button>
                   </span>
@@ -241,7 +297,8 @@ export function NewCircle() {
           </ol>
           <div className="summary card">
             <p>
-              <b>{name.trim()}</b>: {formatNaira(amount ?? 0)} {frequency} from {formatWithDay(start)} to {formatWithDay(lastDate)}. Each person collects {formatNaira((amount ?? 0) * everyone.length)} once.
+              <b>{name.trim()}</b>: {formatNaira(amount ?? 0)} {frequency} from {formatWithDay(start)} to {formatWithDay(lastDate)}. Each person collects{' '}
+              {formatNaira((amount ?? 0) * everyone.length)} once.
             </p>
           </div>
           <div className="wizard-nav">

@@ -27,7 +27,11 @@ function trim(n: number): string {
  * Returns null for anything that isn't a positive whole amount.
  */
 export function parseNaira(input: string): number | null {
-  const cleaned = input.trim().toLowerCase().replace(/[₦,\s]/g, '').replace(/^ngn/, '')
+  const cleaned = input
+    .trim()
+    .toLowerCase()
+    .replace(/[₦,\s]/g, '')
+    .replace(/^ngn/, '')
   const match = /^(\d+(?:\.\d+)?)([km]?)$/.exec(cleaned)
   if (!match) return null
   const base = Number(match[1])

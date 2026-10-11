@@ -51,7 +51,12 @@ describe('merging two phones', () => {
   it('surfaces both versions when the same square was edited apart', () => {
     const base = createCircleDoc(smallCircle())
     const mine = recordPayment(fork(base), 'dayo', 1, payment(10000, '2026-08-29', { recordedBy: 'me', recordedAt: '2026-10-11T08:31:00Z' })).doc
-    const theirs = recordPayment(fork(base), 'dayo', 1, payment(20000, '2026-08-29', { method: 'transfer', recordedBy: 'them', recordedAt: '2026-10-10T17:30:00Z' })).doc
+    const theirs = recordPayment(
+      fork(base),
+      'dayo',
+      1,
+      payment(20000, '2026-08-29', { method: 'transfer', recordedBy: 'them', recordedAt: '2026-10-10T17:30:00Z' }),
+    ).doc
     const merged = A.merge(mine, theirs)
     const [conflict, ...rest] = findConflicts(merged)
     expect(rest).toHaveLength(0)

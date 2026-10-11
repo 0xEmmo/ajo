@@ -63,7 +63,9 @@
   border-radius: var(--radius);
   padding: 18px;
   text-decoration: none;
-  transition: transform 150ms var(--ease), box-shadow 150ms;
+  transition:
+    transform 150ms var(--ease),
+    box-shadow 150ms;
   height: 100%;
 }
 

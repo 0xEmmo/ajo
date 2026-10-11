@@ -12,7 +12,10 @@
   line-height: 1.1;
   white-space: nowrap;
   text-decoration: none;
-  transition: background-color 120ms, color 120ms, transform 120ms var(--ease);
+  transition:
+    background-color 120ms,
+    color 120ms,
+    transform 120ms var(--ease);
 }
 
 .btn:active:not(:disabled) {

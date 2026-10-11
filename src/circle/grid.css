@@ -79,7 +79,9 @@ td.tot.is-owing {
   place-items: center;
   font: 500 11.5px var(--font-mono);
   position: relative;
-  transition: transform 120ms var(--ease), box-shadow 120ms;
+  transition:
+    transform 120ms var(--ease),
+    box-shadow 120ms;
 }
 
 button.cell:hover {

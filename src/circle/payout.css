@@ -10,7 +10,9 @@
 }
 
 .payout-hero .avatar {
-  box-shadow: 0 0 0 3px var(--mustard), 0 0 0 7px var(--mustard-soft);
+  box-shadow:
+    0 0 0 3px var(--mustard),
+    0 0 0 7px var(--mustard-soft);
 }
 
 .payout-hero b {

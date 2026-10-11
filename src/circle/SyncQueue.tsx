@@ -24,9 +24,7 @@ export function SyncQueue({ circleOnly = true }: { circleOnly?: boolean }) {
               <span className="queue-dot" aria-hidden="true" />
               <div>
                 {q.label}
-                <small>
-                  Recorded by you · {q.key && conflictKeys.has(q.key) ? 'has a conflict, see above' : q.detail || 'Saved on this phone'}
-                </small>
+                <small>Recorded by you · {q.key && conflictKeys.has(q.key) ? 'has a conflict, see above' : q.detail || 'Saved on this phone'}</small>
               </div>
               <time className="num" dateTime={q.at}>
                 {formatWhen(q.at)}

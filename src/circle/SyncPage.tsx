@@ -82,7 +82,8 @@ export function SyncPage() {
               Try it with two phones
             </h2>
             <p className="card-text">
-              Open {deviceOwner(other)}'s phone in a new tab. It keeps its own storage, so you can switch either one offline, edit the same square on both, and watch the clash appear when they reconnect.
+              Open {deviceOwner(other)}'s phone in a new tab. It keeps its own storage, so you can switch either one offline, edit the same square on both, and
+              watch the clash appear when they reconnect.
             </p>
             <a className="btn btn-primary btn-small card-cta" href={otherUrl} target="_blank" rel="noopener">
               Open {deviceOwner(other)}'s phone <Icon name="external" size={15} />
@@ -95,7 +96,9 @@ export function SyncPage() {
             </h2>
             <ul className="how">
               <li>Each phone keeps the whole circle as an Automerge document in IndexedDB, so nothing needs the network to work.</li>
-              <li>There's no server in this demo. A separate in-browser database stands in for the relay, and BroadcastChannel tells other tabs when it changes.</li>
+              <li>
+                There's no server in this demo. A separate in-browser database stands in for the relay, and BroadcastChannel tells other tabs when it changes.
+              </li>
               <li>Edits to different squares merge cleanly. If two phones change the same square while apart, both versions are kept and you choose.</li>
             </ul>
           </section>

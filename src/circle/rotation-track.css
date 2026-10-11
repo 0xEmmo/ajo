@@ -88,7 +88,9 @@
 
 .is-collecting .avatar {
   margin-top: -5px;
-  box-shadow: 0 0 0 3px var(--mustard), 0 0 0 7px var(--mustard-soft);
+  box-shadow:
+    0 0 0 3px var(--mustard),
+    0 0 0 7px var(--mustard-soft);
 }
 
 .is-collecting .rot-name {

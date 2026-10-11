@@ -58,7 +58,8 @@ export function Home() {
             <div>
               <h2 className="eyebrow">No circles on this phone yet</h2>
               <p>
-                Start one for your stall, your office or your family, or join one someone shared with you. Ajo keeps the book on this phone, so it works at the market with no signal.
+                Start one for your stall, your office or your family, or join one someone shared with you. Ajo keeps the book on this phone, so it works at the
+                market with no signal.
               </p>
             </div>
           </section>
@@ -66,7 +67,13 @@ export function Home() {
           <ul className="circle-cards">
             {circles.map(({ circle, conflicts }) => (
               <li key={circle.id}>
-                <CircleCard circle={circle} conflicts={conflicts} pending={queue.filter((q) => q.circleId === circle.id).length} meId={settings.me[circle.id]} today={today} />
+                <CircleCard
+                  circle={circle}
+                  conflicts={conflicts}
+                  pending={queue.filter((q) => q.circleId === circle.id).length}
+                  meId={settings.me[circle.id]}
+                  today={today}
+                />
               </li>
             ))}
           </ul>
@@ -93,11 +100,7 @@ function CircleCard({ circle, conflicts, pending, meId, today }: { circle: Circl
     <Link to={`/c/${circle.id}`} className="circle-card">
       <div className="cc-top">
         <h2>{circle.name}</h2>
-        {(pending > 0 || conflicts > 0) && (
-          <span className="cc-flag num">
-            {conflicts > 0 ? plural(conflicts, 'clash', 'clashes') : `${pending} unsynced`}
-          </span>
-        )}
+        {(pending > 0 || conflicts > 0) && <span className="cc-flag num">{conflicts > 0 ? plural(conflicts, 'clash', 'clashes') : `${pending} unsynced`}</span>}
       </div>
       <p className="muted">
         {formatNaira(circle.amount)} {circle.frequency} · {plural(circle.order.length, 'member')}

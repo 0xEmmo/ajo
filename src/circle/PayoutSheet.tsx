@@ -124,7 +124,8 @@ function PayoutBody({ round, onDone }: { round: number; onDone: () => void }) {
       {payout ? (
         <div className="payout-done">
           <p>
-            <b>Paid out {formatNaira(payout.amount)}</b> by {methodName[payout.method]} on {formatWithDay(payout.paidOn)}, recorded by {recorder(payout.recordedBy, deviceId)}.
+            <b>Paid out {formatNaira(payout.amount)}</b> by {methodName[payout.method]} on {formatWithDay(payout.paidOn)}, recorded by{' '}
+            {recorder(payout.recordedBy, deviceId)}.
           </p>
           <button type="button" className="btn btn-danger" onClick={() => void undo()}>
             Undo payout
@@ -139,7 +140,14 @@ function PayoutBody({ round, onDone }: { round: number; onDone: () => void }) {
           <div className="field-pair">
             <label className="field" htmlFor={ids.amount}>
               <span>Amount paid out</span>
-              <input id={ids.amount} className="input money" inputMode="decimal" value={amountText} onChange={(e) => (setAmountText(e.target.value), setConfirmShort(false))} aria-invalid={amount === null} />
+              <input
+                id={ids.amount}
+                className="input money"
+                inputMode="decimal"
+                value={amountText}
+                onChange={(e) => (setAmountText(e.target.value), setConfirmShort(false))}
+                aria-invalid={amount === null}
+              />
             </label>
             <label className="field" htmlFor={ids.date}>
               <span>Paid on</span>

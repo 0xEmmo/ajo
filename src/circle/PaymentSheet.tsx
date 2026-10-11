@@ -53,7 +53,12 @@ function PaymentForm({ target, onDone }: { target: NonNullable<Props['target']>;
 
   const preview =
     amount !== null
-      ? cellFor({ ...circle, payments: { ...circle.payments, [cellKey(memberId, round)]: { amount, method, paidOn, recordedBy: deviceId, recordedAt: '' } } }, memberId, round, today)
+      ? cellFor(
+          { ...circle, payments: { ...circle.payments, [cellKey(memberId, round)]: { amount, method, paidOn, recordedBy: deviceId, recordedAt: '' } } },
+          memberId,
+          round,
+          today,
+        )
       : null
   const over = amount !== null && amount > circle.amount ? amount - circle.amount : 0
 
@@ -182,7 +187,15 @@ function PaymentForm({ target, onDone }: { target: NonNullable<Props['target']>;
       <div className="field-pair">
         <label className="field" htmlFor={ids.date}>
           <span>Paid on</span>
-          <input id={ids.date} type="date" className="input" value={paidOn} max={today} onChange={(e) => setPaidOn(e.target.value)} aria-invalid={!!dateError} />
+          <input
+            id={ids.date}
+            type="date"
+            className="input"
+            value={paidOn}
+            max={today}
+            onChange={(e) => setPaidOn(e.target.value)}
+            aria-invalid={!!dateError}
+          />
           {dateError && <small className="error">{dateError}</small>}
         </label>
         {method !== 'cash' && (

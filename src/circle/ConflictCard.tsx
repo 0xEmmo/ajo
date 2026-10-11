@@ -26,13 +26,17 @@ export function ConflictCard({ conflict, onResolved, headingLevel = 3 }: Props) 
   const who = member ? firstName(member.name) : 'This member'
   const word = roundWord(circle)
   const H = `h${headingLevel}` as const
-  const others = [...new Set(conflict.versions.map((v) => v.recordedBy).filter((d) => d !== deviceId))].map((d) => phoneOf(d, deviceId).replace(/'s phone$/, ''))
+  const others = [...new Set(conflict.versions.map((v) => v.recordedBy).filter((d) => d !== deviceId))].map((d) =>
+    phoneOf(d, deviceId).replace(/'s phone$/, ''),
+  )
   const mineFirst = [...conflict.versions].sort((a, b) => Number(b.recordedBy === deviceId) - Number(a.recordedBy === deviceId))
 
   const keep = async (index: number) => {
     const chosen = mineFirst[index]!
-    await engine.edit(circle.id, { label: `Kept ${formatNaira(chosen.amount)} for ${who} ${word} ${conflict.round}`, detail: 'Settled two versions', key: conflict.key }, (doc) =>
-      resolveConflict(doc, conflict.key, chosen, deviceId, new Date().toISOString()),
+    await engine.edit(
+      circle.id,
+      { label: `Kept ${formatNaira(chosen.amount)} for ${who} ${word} ${conflict.round}`, detail: 'Settled two versions', key: conflict.key },
+      (doc) => resolveConflict(doc, conflict.key, chosen, deviceId, new Date().toISOString()),
     )
     toast(`Kept ${formatNaira(chosen.amount)} for ${who}. Every phone will show this.`)
     onResolved?.()
@@ -60,8 +64,8 @@ export function ConflictCard({ conflict, onResolved, headingLevel = 3 }: Props) 
         Two versions to check
       </H>
       <p>
-        {who}, {word} {conflict.round}. {others.length ? `You and ${others.join(' and ')} both` : 'Two phones'} changed this square while apart. Nothing has been lost;
-        pick what really happened.
+        {who}, {word} {conflict.round}. {others.length ? `You and ${others.join(' and ')} both` : 'Two phones'} changed this square while apart. Nothing has
+        been lost; pick what really happened.
       </p>
       <div className="versions">
         {mineFirst.map((v, i) => {

@@ -33,11 +33,7 @@ describe('sync engine', () => {
     const s = kemi.getState()
     expect(s.ready).toBe(true)
     expect(s.settings.signal).toBe(false)
-    expect(s.queue.map((q) => q.label)).toEqual([
-      'Ngozi paid ₦20,000 for week 7',
-      'Mama Bisi paid ₦20,000 for week 7',
-      'Funke week 5 set to ₦10,000',
-    ])
+    expect(s.queue.map((q) => q.label)).toEqual(['Ngozi paid ₦20,000 for week 7', 'Mama Bisi paid ₦20,000 for week 7', 'Funke week 5 set to ₦10,000'])
     kemi.close()
   })
 

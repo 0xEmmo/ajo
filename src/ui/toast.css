@@ -25,7 +25,9 @@
 }
 
 .toast-warn {
-  box-shadow: inset 4px 0 0 var(--brick), 0 10px 24px -12px rgba(20, 35, 29, 0.6);
+  box-shadow:
+    inset 4px 0 0 var(--brick),
+    0 10px 24px -12px rgba(20, 35, 29, 0.6);
 }
 
 .toast span {

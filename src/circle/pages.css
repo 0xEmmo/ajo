@@ -199,7 +199,9 @@
 }
 
 .member-hero .avatar {
-  box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--rule);
+  box-shadow:
+    0 0 0 3px var(--paper),
+    0 0 0 5px var(--rule);
 }
 
 .member-hero h1 {

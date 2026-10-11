@@ -27,7 +27,8 @@ export function MemberForm({ initial, submitLabel, onSubmit, taken = [] }: Props
 
   const trimmed = name.trim()
   const duplicate = taken.some((t) => t.toLowerCase() === trimmed.toLowerCase())
-  const nameError = submitted && !trimmed ? 'Add a name so everyone knows who this is.' : submitted && duplicate ? 'Someone in this circle already has that name.' : null
+  const nameError =
+    submitted && !trimmed ? 'Add a name so everyone knows who this is.' : submitted && duplicate ? 'Someone in this circle already has that name.' : null
   const phoneError = phone && !/^\+?[\d\s-]{7,16}$/.test(phone.trim()) ? 'Use digits only, like 0803 555 0142.' : null
 
   const pick = async (file?: File) => {
@@ -71,7 +72,16 @@ export function MemberForm({ initial, submitLabel, onSubmit, taken = [] }: Props
       </label>
       <label className="field" htmlFor={ids.phone}>
         <span>Phone</span>
-        <input id={ids.phone} className="input num" type="tel" inputMode="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Optional, for reminders" aria-invalid={!!phoneError} />
+        <input
+          id={ids.phone}
+          className="input num"
+          type="tel"
+          inputMode="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="Optional, for reminders"
+          aria-invalid={!!phoneError}
+        />
         {phoneError && <small className="error">{phoneError}</small>}
       </label>
       <button type="submit" className="btn btn-primary btn-block">

@@ -48,7 +48,12 @@ export function MemberStrips() {
                   {rounds.map((r) => {
                     const cell = cellFor(circle, id, r, today)
                     const key = cellKey(id, r)
-                    return <i key={r} className={`cell mini is-${cell.state}${conflictKeys.has(key) ? ' has-conflict' : ''}${pending.has(key) ? ' is-unsynced' : ''}`} />
+                    return (
+                      <i
+                        key={r}
+                        className={`cell mini is-${cell.state}${conflictKeys.has(key) ? ' has-conflict' : ''}${pending.has(key) ? ' is-unsynced' : ''}`}
+                      />
+                    )
                   })}
                 </span>
                 <span className="visually-hidden">

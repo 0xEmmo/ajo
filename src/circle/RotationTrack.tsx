@@ -42,7 +42,13 @@ export function RotationTrack() {
                   className="rot-btn"
                   onClick={() => openPayout(slot.round)}
                   aria-label={`Round ${slot.round}, ${m.name}, ${formatShort(slot.date)}, ${
-                    slot.state === 'collected' ? 'collected' : slot.state === 'collecting' ? 'collecting now' : slot.state === 'overdue' ? 'payout not recorded' : 'upcoming'
+                    slot.state === 'collected'
+                      ? 'collected'
+                      : slot.state === 'collecting'
+                        ? 'collecting now'
+                        : slot.state === 'overdue'
+                          ? 'payout not recorded'
+                          : 'upcoming'
                   }`}
                 >
                   <Avatar member={m} size={slot.state === 'collecting' ? 54 : 44} />

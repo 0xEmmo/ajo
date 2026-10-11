@@ -19,9 +19,7 @@ export function StatusBar() {
           <b>You're offline.</b> <span className="sb-hide-sm">Everything still works.</span>
           {waiting > 0 && <span className="sb-pill num">{plural(waiting, 'change')} waiting to sync</span>}
         </p>
-        <p className="sb-meta">
-          {last} · Saved on this phone
-        </p>
+        <p className="sb-meta">{last} · Saved on this phone</p>
         {networkOnline ? (
           <button type="button" className="btn btn-small btn-on-ink sb-action" onClick={() => void engine.setSignal(true)}>
             Reconnect

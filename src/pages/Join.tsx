@@ -21,7 +21,10 @@ function EnterCode() {
   const id = useId()
   const [code, setCode] = useState('')
   const [tried, setTried] = useState(false)
-  const clean = code.trim().toLowerCase().replace(/^.*\/join\//, '')
+  const clean = code
+    .trim()
+    .toLowerCase()
+    .replace(/^.*\/join\//, '')
   const error = tried && !/^[a-z0-9-]{3,40}$/.test(clean) ? 'Codes look like ikeja-market-women or oja-oba-k3x9. You can also paste the whole link.' : null
   const submit = (e: FormEvent) => {
     e.preventDefault()
@@ -38,7 +41,16 @@ function EnterCode() {
       <form className="wizard-body" onSubmit={submit} noValidate>
         <label className="field" htmlFor={id}>
           <span>Circle code or invite link</span>
-          <input id={id} className="input num" value={code} onChange={(e) => setCode(e.target.value)} autoCapitalize="none" autoComplete="off" spellCheck={false} aria-invalid={!!error} />
+          <input
+            id={id}
+            className="input num"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            autoCapitalize="none"
+            autoComplete="off"
+            spellCheck={false}
+            aria-invalid={!!error}
+          />
           {error && <small className="error">{error}</small>}
         </label>
         <div className="wizard-nav">
@@ -124,7 +136,8 @@ function JoinCircle({ circleId }: { circleId: string }) {
       <main id="main" className="page-narrow wizard">
         <h1 className="display">No circle with that code</h1>
         <p>
-          Nothing called <code className="num">{circleId}</code> has reached the relay. Check the code with your coordinator, or ask them to open Ajo while they have signal so it can sync.
+          Nothing called <code className="num">{circleId}</code> has reached the relay. Check the code with your coordinator, or ask them to open Ajo while they
+          have signal so it can sync.
         </p>
         <p className="muted small">In this demo the relay lives in this browser, so invite links only work between tabs of the same browser.</p>
         <div className="row">
@@ -142,7 +155,8 @@ function JoinCircle({ circleId }: { circleId: string }) {
   const circle = snapshot(lookup.doc)
   const coordinator = circle.members[circle.coordinatorId]
   const nameTaken = Object.values(circle.members).some((m) => m.name.toLowerCase() === newName.trim().toLowerCase())
-  const nameError = tried && who === 'new' && (!newName.trim() ? 'Add your name.' : nameTaken ? 'That name is already in the circle; pick yourself above instead.' : null)
+  const nameError =
+    tried && who === 'new' && (!newName.trim() ? 'Add your name.' : nameTaken ? 'That name is already in the circle; pick yourself above instead.' : null)
 
   const join = async (e: FormEvent) => {
     e.preventDefault()

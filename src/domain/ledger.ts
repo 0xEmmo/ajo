@@ -18,9 +18,7 @@ export function roundCount(circle: Circle): number {
 }
 
 export function roundDate(circle: Pick<Circle, 'startDate' | 'frequency'>, round: number): ISODate {
-  return circle.frequency === 'weekly'
-    ? addDays(circle.startDate, (round - 1) * 7)
-    : addMonths(circle.startDate, round - 1)
+  return circle.frequency === 'weekly' ? addDays(circle.startDate, (round - 1) * 7) : addMonths(circle.startDate, round - 1)
 }
 
 /**
@@ -138,8 +136,7 @@ export function summariseCircle(circle: Circle, on: ISODate): CircleSummary {
 /** One-line status for a member row on the phone layout. */
 export function describeMember(s: MemberSummary, fmt: (n: number) => string, roundLabel: string): string {
   if (s.owed > 0) return `Owes ${fmt(s.owed)}`
-  const join = (rs: number[]) =>
-    rs.length === 1 ? `${roundLabel} ${rs[0]}` : `${roundLabel} ${rs.slice(0, -1).join(', ')} and ${rs.at(-1)}`
+  const join = (rs: number[]) => (rs.length === 1 ? `${roundLabel} ${rs[0]}` : `${roundLabel} ${rs.slice(0, -1).join(', ')} and ${rs.at(-1)}`)
   if (s.missedRounds.length > 0) return `Missed ${join(s.missedRounds)}, caught up`
   if (s.credit > 0) return `${fmt(s.credit)} ahead`
   if (s.lateRounds.length > 0) return `Paid late in ${join(s.lateRounds)}`

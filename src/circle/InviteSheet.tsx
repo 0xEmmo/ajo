@@ -40,7 +40,12 @@ export function InviteSheet({ open, onClose }: { open: boolean; onClose: () => v
   }
 
   return (
-    <Sheet open={open} onClose={onClose} title={`Invite to ${circle.name}`} description="Members scan this at the stall, or you send the link. Their phone needs signal the first time; after that it works offline too.">
+    <Sheet
+      open={open}
+      onClose={onClose}
+      title={`Invite to ${circle.name}`}
+      description="Members scan this at the stall, or you send the link. Their phone needs signal the first time; after that it works offline too."
+    >
       <div className="invite">
         <div className="qr" role="img" aria-label={`QR code for ${link}`} dangerouslySetInnerHTML={{ __html: svg }} />
         <div className="invite-link">

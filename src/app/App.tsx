@@ -43,7 +43,12 @@ function EngineEvents() {
       if (e.type === 'reset') location.replace('/')
       if (e.type === 'synced') toast(`${e.count === 1 ? '1 change' : `${e.count} changes`} synced`)
       if (e.type === 'conflicts-arrived') {
-        toast(e.conflicts.length === 1 ? 'Another phone changed a square you edited. Check it in the ledger.' : `${e.conflicts.length} squares have two versions to check.`, { tone: 'warn', ms: 6000 })
+        toast(
+          e.conflicts.length === 1
+            ? 'Another phone changed a square you edited. Check it in the ledger.'
+            : `${e.conflicts.length} squares have two versions to check.`,
+          { tone: 'warn', ms: 6000 },
+        )
       }
     })
     return () => {

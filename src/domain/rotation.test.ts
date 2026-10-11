@@ -63,7 +63,7 @@ describe('reordering', () => {
 
   it('draws lots without losing anyone', () => {
     let seed = 42
-    const random = () => ((seed = (seed * 16807) % 2147483647) / 2147483647)
+    const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647
     const result = drawLots(['a', 'b', 'c', 'd', 'e'], random)
     expect([...result].sort()).toEqual(['a', 'b', 'c', 'd', 'e'])
     expect(result).not.toEqual(['a', 'b', 'c', 'd', 'e'])
