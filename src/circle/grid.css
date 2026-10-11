@@ -1,0 +1,263 @@
+.contrib-scroll {
+  overflow-x: auto;
+  margin: 0 -6px;
+}
+
+.contrib-table {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 6px 5px;
+  width: 100%;
+  min-width: calc(190px + 110px + var(--cols) * 64px);
+}
+
+.contrib-table thead th {
+  font: 600 11px var(--font-body);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--mute);
+  text-align: center;
+  padding-bottom: 2px;
+  vertical-align: bottom;
+}
+
+.contrib-table thead th:first-child {
+  text-align: left;
+  width: 190px;
+}
+
+.contrib-table thead th small {
+  display: block;
+  font: 400 11px var(--font-mono);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.contrib-table th.tot,
+.contrib-table td.tot {
+  width: 110px;
+  text-align: right;
+}
+
+.contrib-table tbody th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.contrib-member {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contrib-member:hover span {
+  text-decoration: underline;
+}
+
+td.tot {
+  font: 500 13px var(--font-mono);
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
+td.tot.is-owing {
+  color: var(--brick);
+}
+
+.cell {
+  width: 100%;
+  height: 44px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font: 500 11.5px var(--font-mono);
+  position: relative;
+  transition: transform 120ms var(--ease), box-shadow 120ms;
+}
+
+button.cell:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px -6px rgba(20, 35, 29, 0.6);
+}
+
+.is-paid {
+  background: var(--green);
+  color: #e4f1ea;
+}
+
+.is-late {
+  background: var(--mustard);
+  color: var(--ink);
+}
+
+.is-missed {
+  background: transparent;
+  border: 1.5px solid var(--brick);
+  color: var(--brick);
+}
+
+.is-part {
+  background: linear-gradient(90deg, var(--green) 0 50%, var(--green-tint) 50%);
+  color: var(--ink);
+}
+
+.part-chip {
+  background: #fff;
+  border-radius: 3px;
+  padding: 0 4px;
+}
+
+.is-due {
+  background: repeating-linear-gradient(135deg, var(--rule-2) 0 4px, var(--paper-2) 4px 8px);
+  color: var(--mute);
+}
+
+.is-upcoming {
+  background: var(--paper-2);
+  border: 1px dashed var(--rule);
+}
+
+.is-unsynced::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--mustard);
+  border: 2px solid var(--paper);
+}
+
+.has-conflict {
+  outline: 2px dashed var(--brick);
+  outline-offset: 2px;
+}
+
+.legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 12.5px;
+  color: var(--mute);
+  margin-top: 8px;
+}
+
+.legend li {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+}
+
+.swatch.is-unsynced {
+  background: var(--mustard);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.swatch.is-unsynced::after {
+  display: none;
+}
+
+.grid-empty {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  margin-top: 24px;
+}
+
+/* Phone strips */
+.strip-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 0 4px;
+}
+
+.strip-head h2 {
+  font-size: 13px;
+}
+
+.strip-head span {
+  font-size: 12px;
+  color: var(--mute);
+}
+
+.strips {
+  list-style: none;
+  margin: 0 -18px;
+}
+
+.strip-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto 16px;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 12px 9px 18px;
+  text-decoration: none;
+  min-height: 56px;
+}
+
+.strip-row:active {
+  background: var(--paper-2);
+}
+
+.strip-who b {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.strip-who small {
+  display: block;
+  color: var(--mute);
+  font-size: 12px;
+}
+
+.strip-who small.owing {
+  color: var(--brick);
+}
+
+.strip {
+  display: flex;
+  gap: 3px;
+}
+
+.cell.mini {
+  width: 13px;
+  height: 22px;
+  border-radius: 3px;
+}
+
+.cell.mini.is-unsynced::after {
+  width: 8px;
+  height: 8px;
+  top: -3px;
+  right: -3px;
+}
+
+.cell.mini.has-conflict {
+  outline-width: 1.5px;
+  outline-offset: 1px;
+}
+
+.strip-chev {
+  color: var(--mute);
+}
