@@ -1,0 +1,97 @@
+.payout {
+  display: grid;
+  gap: 18px;
+}
+
+.payout-hero {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.payout-hero .avatar {
+  box-shadow: 0 0 0 3px var(--mustard), 0 0 0 7px var(--mustard-soft);
+}
+
+.payout-hero b {
+  display: block;
+  font-size: 17px;
+}
+
+.payout-figures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.payout-figures div {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--card);
+}
+
+.payout-figures dt {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 600;
+}
+
+.payout-figures dd {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.payout-figures .is-short {
+  color: var(--brick);
+}
+
+.outstanding {
+  list-style: none;
+  margin-top: 6px;
+}
+
+.outstanding li {
+  display: grid;
+  grid-template-columns: 28px 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+}
+
+.outstanding li:last-child {
+  border-bottom: 0;
+}
+
+.payout-form {
+  display: grid;
+  gap: 14px;
+}
+
+.payout-form .btn-block {
+  min-height: 48px;
+}
+
+.payout-warn {
+  background: var(--brick-soft);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+}
+
+.payout-note,
+.payout-done p {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.payout-done {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
